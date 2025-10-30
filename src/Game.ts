@@ -36,6 +36,10 @@ export class Game{
         return this.countNumberIdenticalDice(4) ? Figure.Carré : null;
     }
 
+    private isFull(): Figure | null{
+        return this.countNumberIdenticalDice(5) ? Figure.Full : null;
+    }
+
     private isYAMS(): Figure | null{
 
         let last_dice =  this.dices[0]
@@ -51,7 +55,7 @@ export class Game{
 
 
     state(): Figure{
-        return this.isYAMS() || this.isCarré() || this.isBrelan() || Figure.Chance// this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || this.isChance()
+        return this.isYAMS() || this.isCarré() || this.isFull() || this.isBrelan() || Figure.Chance// this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || this.isChance()
     }
 
 }
