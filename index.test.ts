@@ -6,6 +6,6 @@ describe("Roman Number MApper", () => {
     it.each([
         [[1, 1, 1, 4, 5] as Rolls, Figure.Brelan],          // Brelan
     ])("should map %i to %s", (num, expected) => {
-        expect(new Game(num)).toBe(expected);
+        expect(new Game(num).state()).toBe(expected);
     });
 })
