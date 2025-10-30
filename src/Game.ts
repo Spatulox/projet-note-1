@@ -49,6 +49,18 @@ export class Game{
         return null;
     }
 
+    private isGrandeSuite(): Figure | null{
+        
+        let last_dice = this.dices[0]
+        for (let i = 1; i < this.dices.length; i++) {
+            if(last_dice + 1 != this.dices[i]){
+                return null
+            }
+            last_dice = this.dices[i]!
+        }
+
+        return Figure["Grande Suite"]
+    }
 
 
     private isYAMS(): Figure | null{
@@ -66,7 +78,7 @@ export class Game{
 
 
     state(): Figure{
-        return this.isYAMS() || this.isCarré() || this.isFull() || this.isBrelan() || Figure.Chance// this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || this.isChance()
+        return this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || Figure.Chance// this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || this.isChance()
     }
 
 }
