@@ -16,17 +16,24 @@ export class Game{
     constructor(dice: Rolls){
         this.dices = dice
     }
-
-    private isBrelan(): Figure | null{
-
+    
+    private countNumberIdenticalDice(numberOfIdentical: number): boolean{
         const counts: { [key: number]: number } = {};
         for (const die of this.dices) {
             counts[die] = (counts[die] || 0) + 1;
-            if (counts[die] === 3) {
-                return Figure.Brelan;
+            if (counts[die] === numberOfIdentical) {
+                return true;
             }
         }
-        return null;
+        return false;
+    }
+
+    private isBrelan(): Figure | null{
+        return this.countNumberIdenticalDice(3) ? Figure.Brelan : null;
+    }
+
+    private isCarré(): Figure | null{
+        return this.countNumberIdenticalDice(4) ? Figure.Carré : null;
     }
 
     private isYAMS(): Figure | null{
@@ -44,7 +51,7 @@ export class Game{
 
 
     state(): Figure{
-        return this.isYAMS() || this.isBrelan() || Figure.Chance// this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || this.isChance()
+        return this.isYAMS() || this.isCarré() || this.isBrelan() || Figure.Chance// this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || this.isChance()
     }
 
 }
