@@ -29,9 +29,22 @@ export class Game{
         return null;
     }
 
+    private isYAMS(): Figure | null{
+
+        let last_dice =  this.dices[0]
+        for (const die of this.dices) {
+            if(die != last_dice){
+                return null
+            }
+            last_dice = die
+        }
+
+        return Figure.YAMS
+    }
+
 
     state(): Figure{
-        return this.isBrelan() || Figure.Chance// this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || this.isChance()
+        return this.isYAMS() || this.isBrelan() || Figure.Chance// this.isYAMS() || this.isGrandeSuite() || this.isCarré() || this.isFull() || this.isBrelan() || this.isChance()
     }
 
 }
