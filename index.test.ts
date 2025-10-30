@@ -1,0 +1,11 @@
+import { describe, expect, it } from "vitest";
+import { Figure, Game, Rolls } from "./src/Game";
+
+
+describe("Roman Number MApper", () => {
+    it.each([
+        [[1, 1, 1, 4, 5] as Rolls, Figure.Brelan],          // Brelan
+    ])("should map %i to %s", (num, expected) => {
+        expect(new Game(num)).toBe(expected);
+    });
+})
