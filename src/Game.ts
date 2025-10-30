@@ -37,8 +37,19 @@ export class Game{
     }
 
     private isFull(): Figure | null{
-        return this.countNumberIdenticalDice(5) ? Figure.Full : null;
+        const counts: { [key: number]: number } = {};
+        for (const die of this.dices) {
+            counts[die] = (counts[die] || 0) + 1;
+        }
+
+        const values = Object.values(counts);
+        if (values.includes(3) && values.includes(2)) {
+            return Figure.Full;
+        }
+        return null;
     }
+
+
 
     private isYAMS(): Figure | null{
 
